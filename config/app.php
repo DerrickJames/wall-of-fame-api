@@ -160,7 +160,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
 
-        /**
+        /*
          * Fame Service Providers
          */
         Fame\Repositories\RepositoryServiceProvider::class,

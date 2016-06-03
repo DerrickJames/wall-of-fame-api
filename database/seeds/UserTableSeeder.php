@@ -15,7 +15,8 @@ class UserTableSeeder extends Seeder
     /**
      * Create a new instance of the UserTableSeeder.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $image1 = asset('profiles/avatars/avatar1.jpeg');
         $image2 = asset('profiles/avatars/avatar2.jpeg');
         $image3 = asset('profiles/avatars/avatar3.jpeg');
@@ -26,7 +27,7 @@ class UserTableSeeder extends Seeder
         $this->imageArray[] = $image3;
         $this->imageArray[] = $image4;
     }
-    
+
     /**
      * Run the database seeds.
      *
@@ -42,7 +43,7 @@ class UserTableSeeder extends Seeder
                 'email' => $i === 0 ? 'admin@gmail.com' : $faker->email,
                 'password' => $i === 0 ? bcrypt('password') : bcrypt(str_random(10)),
                 'status' => $i === 0 ? true : rand(0, 1),
-                'avatar' => $faker->randomElement($this->imageArray)
+                'avatar' => $faker->randomElement($this->imageArray),
             ]);
         }
     }

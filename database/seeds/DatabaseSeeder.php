@@ -16,21 +16,21 @@ class DatabaseSeeder extends Seeder
         }
 
         $tables = [
-            'users'
+            'users',
         ];
 
-        /** 
+        /*
          * For MySQL database
          *
          * TODO: Extract a package for checking different database
          *       implementations
          * */
         //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
-        /** For PostgreSQL */
+
+        /* For PostgreSQL */
         DB::statement('SET session_replication_role = replica;');
 
-        foreach($tables as $table) {
+        foreach ($tables as $table) {
             DB::table($table)->truncate();
         }
 

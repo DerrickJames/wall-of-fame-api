@@ -1,4 +1,5 @@
 <?php
+
 namespace Helper;
 
 // here you can define custom actions
@@ -15,7 +16,7 @@ class Api extends \Codeception\Module
 
         return [
             'email'    => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ];
     }
 
@@ -25,14 +26,14 @@ class Api extends \Codeception\Module
 
         return [
             'email'    => $user->email,
-            'password' => 'password1'
+            'password' => 'password1',
         ];
     }
 
     public function getUser()
     {
         $user = factory(\App\User::class)->create([
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ]);
 
         return $user;
