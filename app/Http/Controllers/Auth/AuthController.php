@@ -14,7 +14,6 @@ class AuthController extends ApiController
      * Create a new AuthController instance.
      *
      * @param \App\Auth\JWTAuthentication $auth
-     * @return void
      */
     public function __construct(JWTAuthentication $auth)
     {
@@ -56,7 +55,7 @@ class AuthController extends ApiController
     }
 
     /**
-     * TODO: Complete implementation of social login
+     * TODO: Complete implementation of social login.
      */
     public function postSocialLogin(Github $social, Request $request)
     {
@@ -82,6 +81,6 @@ class AuthController extends ApiController
     {
         $this->auth->logout();
 
-        return response()->json(["success" => "user_logged_out"], 200);
+        return response()->json(['success' => 'user_logged_out'], 200);
     }
 }
