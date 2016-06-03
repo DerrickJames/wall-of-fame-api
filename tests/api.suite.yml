@@ -1,0 +1,11 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - \Helper\Api
+        - Asserts
+        - Laravel5:
+            environment_file: .env.testing
+        - REST:
+            url: 'http://localhost:8000'
+            part: Json
+            depends: Laravel5

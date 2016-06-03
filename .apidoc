@@ -1,0 +1,1 @@
+apidoc -i ./app/Http/Controllers/ -o ~/apidocs/wall-of-fame/
