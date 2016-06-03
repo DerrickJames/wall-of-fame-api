@@ -1,6 +1,6 @@
 <?php
 
-namespace Fame\Events;
+namespace App\Events;
 
 abstract class Event
 {

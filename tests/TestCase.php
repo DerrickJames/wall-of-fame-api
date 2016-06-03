@@ -9,6 +9,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://localhost';
 
+    protected $authUser = null;
+    protected $authUserToken = null;
+
     /**
      * Creates the application.
      *
@@ -21,5 +24,60 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    public function getCorrectCredentials()
+    {
+        $user = $this->getUser();
+
+        return [
+            'email'    => $user->email,
+            'password' => 'password'
+        ];
+    }
+
+    public function getWrongCredentials()
+    {
+        $user = $this->getUser();
+
+        return [
+            'email'    => $user->email,
+            'password' => 'password1'
+        ];
+    }
+
+    public function getUser()
+    {
+        $user = factory(\App\User::class)->create([
+            'password' => bcrypt('password')
+        ]);
+
+        return $user;
+    }
+
+    public function getAuthUser()
+    {
+        if (! $this->authUser) {
+            $this->setAuthUserToken();
+        }
+
+        return $this->authUser;
+    }
+
+    public function getAuthUserToken()
+    {
+        if (! $this->authUserToken) {
+            $this->setAuthUserToken();
+        }
+
+        return $this->authUserToken;
+    }
+
+    protected function setAuthUserToken()
+    {
+        $user = $this->getUser();
+
+        $this->authUser = $user;
+        $this->authUserToken = JWTAuth::fromUser($user);
     }
 }

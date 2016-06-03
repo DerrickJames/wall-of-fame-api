@@ -1,72 +1,87 @@
 <?php
 
-namespace Fame\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use Fame\User;
-use Validator;
-use Fame\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Fame\Auth\Github;
+use Illuminate\Http\Request;
+use Fame\Auth\JWTAuthentication;
+use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\ApiController;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
     /**
-     * Where to redirect users after login / registration.
+     * Create a new AuthController instance.
      *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new authentication controller instance.
-     *
+     * @param \App\Auth\JWTAuthentication $auth
      * @return void
      */
-    public function __construct()
+    public function __construct(JWTAuthentication $auth)
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->auth = $auth;
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * @api {post} /auth/login User Login
+     * @apiVersion 0.0.1
+     * @apiGroup Authentication
+     * @apiName postLogin
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @apiParamExample {json} Request-Example:
+     *      {
+     *          "email": "admin@example.com",
+     *          "password": "0123456789"
+     *      }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *      HTTP/1.1 200 Success
+     *      {
+     *          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE"
+     *      }
+     *
+     * @apiErrorExample {json} Error-Response:
+     *      HTTP/1.1 401 Unauthorized
+     *      {
+     *          "message": "Invalid credentials.",
+     *          "status_code": 401
+     *      }
      */
-    protected function validator(array $data)
+    public function postLogin(LoginRequest $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $credentials = $request->only('email', 'password');
+
+        $token = $this->auth->login($credentials);
+
+        return response()->json(compact('token'), 200);
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
+     * TODO: Complete implementation of social login
      */
-    protected function create(array $data)
+    public function postSocialLogin(Github $social, Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $token = $social->authenticate($request->has('code'));
+
+        return response()->json(compact('token'), 200);
+    }
+
+    /**
+     * @api {post} /auth/logout User Logout
+     * @apiVersion 0.0.1
+     * @apiGroup Authentication
+     * @apiName logout
+     *
+     * @apiErrorExample {json} Error-Response:
+     *      HTTP/1.1 422 Unprocessable Entity
+     *      {
+     *          "message": "Invalid token.",
+     *          "status_code": 422
+     *      }
+     */
+    public function logout()
+    {
+        $this->auth->logout();
+
+        return response()->json(["success" => "user_logged_out"], 200);
     }
 }

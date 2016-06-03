@@ -1,10 +1,10 @@
 <?php
 
-namespace Fame\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Fame\Http\Requests;
+use App\Http\Requests;
 
 class ApiController extends Controller
 {

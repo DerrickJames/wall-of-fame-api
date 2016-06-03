@@ -11,11 +11,13 @@
 |
 */
 
-$factory->define(Fame\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'username' => $faker->name,
         'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        //'password' => bcrypt(str_random(10)), bcrypt asserts specific password
+        //but slows down tests
+        'password' => bcrypt(str_random(10))
+        //'remember_token' => str_random(10),
     ];
 });

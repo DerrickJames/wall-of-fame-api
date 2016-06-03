@@ -1,18 +1,21 @@
 <?php
 
-namespace Fame;
+namespace App;
 
+use Fame\Traits\UuidModel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use UuidModel;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password', 'status', 'avatar'
     ];
 
     /**
