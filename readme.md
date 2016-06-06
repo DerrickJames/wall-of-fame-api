@@ -1,27 +1,46 @@
 # Wall Of Fame - Laravel Backend API
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+This is the backend implementation of the Wall Of Fame project using Laravel 5.2. It is meant to be a playground to test out different ideas and approaches gathered over time as a software developer from various books, articles and tutorials on large scale system architectures, API development, design patterns, best practices and generally the way I think about elegant code.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Requirements
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+    * Composer
+    * Node & NPM
+    * Apache/Nginx
+    * PHP minimum version of 5.5
+    * PostgreSQL - The default database is PostgreSQL but you can switch to MySQL if that makes more sense to you.
 
-## Official Documentation
+## Installation
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Make sure you have Apache/Nginx, PostgreSQL and PHP running.
 
-## Contributing
+Create a database named `fame` or whichever name you like. Setup the database configuration in your .env file.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Run the following commands from your terminal.
 
-## Security Vulnerabilities
+    $ git clone https://github.com/DerrickJames/wall-of-fame-api.git
+    $ composer install
+    $ php artisan jwt:generate
+    $ php artisan migrate --seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Make sure all tests pass.
 
-## License
+    $ vendor/bin/codecept run
+    $ php artisan serve
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Check inside the database seeds for default users.
+
+## API Documentation
+
+To generate the API documentation, run the following commands from your terminal.
+
+Install apidocs package if you don't already have it installed on your system.
+
+    $ npm install -g apidocs
+
+Make sure you're on the root directory.
+
+    $ cd wall-of-fame-api
+    $ ./apidoc.sh
+
+That should generate and open up the documentation on your browser.

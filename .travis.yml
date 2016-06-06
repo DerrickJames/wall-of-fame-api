@@ -1,13 +1,19 @@
 language: php
+
 php:
-- 5.5.9
-- 5.5
-- 5.6
-- 7.0
-- hhvm
+    - 5.5.9
+    - 5.5
+    - 5.6
+    - 7.0
+    - hhvm
+
 before_script:
-- composer install --prefer-dist --no-interaction
+    - cp .env.testing.example .env.testing
+    - composer self-update
+    - composer install --prefer-dist --no-interaction
+
 script: vendor/bin/codecept run
+
 notifications:
   slack:
     secure: LePcOkWmHG6RLrPB8l/68KQZJKXuqegTUTQzby19Sf8d+8TI9nTxJRv2OKhiJx2G9pRW29VKPJVU5g7FZeOD//2coNUNHMIPm40vd/nm81lmWrElX3BP8yVxggbmv8u7uVkCdQBr1KIqbG5rIru0R+2s+QpAig9jqhttXocdji3yd70n7d6cA11ZGb7H3ZcK0W0zVpc6LD561Ul7SJr3PgTcYDVs7j0hhZMfL4KBxmU7bpuR3aquGNyCkSLIFFqKSHBJ22WCqb6nD4rQE4qRddDlnHxzozvIaujbzgFiLkTdzPy/dGBHD6VBRProBd2hWvs5T5m/+NO7+DRNdLYw8NxSVC1Wg+T9/QBMqDALEv2gsPs8xbPh7uUYMFYiEr+BX12g3MD8rwi2BSaLFSS5ipIItV9cfqAvdaS1nJzoiKaWEMnjYGtm1ATKkEzNj0oHHA3q//Ff44r9OBdzmwhnuzbCyTRyfHSXT4FPGzWTGGoSjIvi9lskCroaSVhdvZzFteHD2q6iDU9qAlDpXJvuoA5inya/J5AtJioDyH8UdkJ+7Ac7cPdMwSDP1+2Uw46KYh5WamPkiyvSAZfQHKAQGpUoRMIlqVQ874yaPOSp1k24Fqg74jVtYm16ELzGH3U36h+gmAN5VEee55mXnrBdJW3dGguJt5KNcAWZmszbB2g=
