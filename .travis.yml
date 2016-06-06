@@ -8,12 +8,14 @@ php:
     - hhvm
 
 before_script:
+    - composer self-update
     - cp .env.testing.example .env.testing
     - touch database/testing.sqlite
-    - composer self-update
     - composer install --prefer-dist --no-interaction
+    - php artisan migrate --database=sqlite_testing
+    - ./vendor/bin/codecept build
 
-script: vendor/bin/codecept run
+script: ./vendor/bin/codecept run
 
 notifications:
   slack:
