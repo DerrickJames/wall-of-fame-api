@@ -9,6 +9,7 @@ php:
 
 before_script:
     - composer self-update
+    - cp .env.example .env
     - cp .env.testing.example .env.testing
     - touch database/testing.sqlite
     - composer install --prefer-dist --no-interaction
