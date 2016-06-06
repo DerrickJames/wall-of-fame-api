@@ -15,11 +15,11 @@ trait UuidModel
      **/
     public static function bootUuidModel()
     {
-        static::creating(function($model) {
+        static::creating(function ($model) {
             $model->uuid = Uuid::uuid4()->toString();
         });
 
-        static::saving(function($model) {
+        static::saving(function ($model) {
             $originalUuid = $model->getOriginal('uuid');
 
             if ($originalUuid !== $model->uuid) {
@@ -35,7 +35,7 @@ trait UuidModel
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $uuid
-     * @param boolean $queryBuilder
+     * @param bool $queryBuilder
      * @return \Illuminate\Database\Eloquent\Model | \Illuminate\Database\Eloquent\Builder
      **/
     public function scopeUuid($query, $uuid, $queryBuilder = false)
@@ -58,12 +58,12 @@ trait UuidModel
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $idOrUuid
-     * @param boolean $queryBuilder
+     * @param bool $queryBuilder
      * @return \Illuminate\Database\Eloquent\Model | \Illuminate\Database\Eloquent\Builder
      **/
     public function scopeIdOrUuid($query, $idOrUuid, $queryBuilder = false)
     {
-        if (!is_string($idOrUuid) && !is_numeric($idOrUuid)) {
+        if (! is_string($idOrUuid) && ! is_numeric($idOrUuid)) {
             throw (new ModelNotFoundException)->setModel(get_class($this));
         }
 
@@ -73,7 +73,7 @@ trait UuidModel
             throw (new ModelNotFoundException)->setModel(get_class($this));
         }
 
-        $search = $query->where(function($query) use ($idOrUuid) {
+        $search = $query->where(function ($query) use ($idOrUuid) {
             $query->where('id', $idOrUuid)
                   ->orWhere('uuid', $idOrUuid);
         });

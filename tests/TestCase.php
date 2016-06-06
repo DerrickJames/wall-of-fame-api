@@ -32,7 +32,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return [
             'email'    => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ];
     }
 
@@ -42,14 +42,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return [
             'email'    => $user->email,
-            'password' => 'password1'
+            'password' => 'password1',
         ];
     }
 
     public function getUser()
     {
         $user = factory(\App\User::class)->create([
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ]);
 
         return $user;

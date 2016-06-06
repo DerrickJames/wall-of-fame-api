@@ -18,7 +18,6 @@ class UserRepository extends AbstractRepository implements UserInterface
         $this->model = $user;
     }
 
-
     /**
      * Find all users.
      *
@@ -26,7 +25,7 @@ class UserRepository extends AbstractRepository implements UserInterface
      * @param string $orderDir
      * @return \App\User[]
      */
-    public function findAll($orderColumn = "created_at", $orderDir = "desc")
+    public function findAll($orderColumn = 'created_at', $orderDir = 'desc')
     {
         return $this->model->orderBy($orderColumn, $orderDir)->get();
     }
@@ -64,13 +63,13 @@ class UserRepository extends AbstractRepository implements UserInterface
         $user = $this->getInstance();
 
         $user->username = $data['username'];
-        $user->email    = $data['email'];
-        $user->password = ($data['password'] != '') ? 
-            bcrypt($data['password']) : 
+        $user->email = $data['email'];
+        $user->password = ($data['password'] != '') ?
+            bcrypt($data['password']) :
             bcrypt(str_random(10));
 
         //$user->status   = $data['status'];
-        $user->avatar   = $data['avatar'];
+        $user->avatar = $data['avatar'];
 
         $user->save();
 

@@ -13,7 +13,7 @@ interface UserInterface
      * @param string $orderDir
      * @return \App\Entities\User[]
      */
-    public function findAll($orderColumn = "created_at", $orderDir = "desc");
+    public function findAll($orderColumn = 'created_at', $orderDir = 'desc');
 
     /**
      * Find a user by id.
