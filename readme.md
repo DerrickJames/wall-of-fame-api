@@ -1,6 +1,6 @@
 # Wall Of Fame - Laravel Backend API
 
-[![StyleCI](https://styleci.io/repos/60344081/shield)](https://styleci.io/repos/60344081)
+[![StyleCI](https://styleci.io/repos/60344081/shield?style=flat)](https://styleci.io/repos/60344081)
 [![Build Status](https://travis-ci.org/DerrickJames/wall-of-fame-api.svg)](https://travis-ci.org/DerrickJames/wall-of-fame-api)
 
 This is the backend implementation of the Wall Of Fame project using Laravel 5.2. It is meant to be a playground to test out different ideas and approaches gathered over time as a software developer from various books, articles and tutorials on large scale system architectures, API development, design patterns, best practices and generally the way I think about elegant code.
