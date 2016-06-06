@@ -2,7 +2,7 @@
 
 namespace Fame\Auth;
 
-use \Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\JWTAuth;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class JWTAuthentication extends AbstractAuth
@@ -39,5 +39,4 @@ class JWTAuthentication extends AbstractAuth
 
         return $token;
     }
-
 }

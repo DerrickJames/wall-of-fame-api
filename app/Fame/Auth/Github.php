@@ -1,6 +1,7 @@
 <?php
 
 namespace Fame\Auth;
+
 use Fame\Repositories\UserInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 
@@ -32,12 +33,14 @@ class Github extends AbstractAuth
     /**
      * Authenticate user.
      *
-     * @param boolean $hasCode
+     * @param bool $hasCode
      * @return string
      */
     public function authenticate($hasCode)
     {
-        if (! $hasCode) return $this->getAuthorization();
+        if (! $hasCode) {
+            return $this->getAuthorization();
+        }
 
         $user = $this->user->findOrCreate($this->getGithubUser());
 
@@ -53,12 +56,14 @@ class Github extends AbstractAuth
      **/
     protected function getAuthorization()
     {
-        /**
+        /*
          * TODO: Handle this on the client-side app!
          */
         \Log::info('Authorization invoked!');
         $provider = $this->socialite->driver('github')->stateless();
+
         return $provider->redirect();
+
         return $this->socialite->driver('github')->redirect();
     }
 
@@ -74,7 +79,7 @@ class Github extends AbstractAuth
         return [
             'username' => $user->getName(),
             'email'    => $user->getEmail(),
-            'avatar'   => $user->getAvatar()
+            'avatar'   => $user->getAvatar(),
         ];
     }
 
