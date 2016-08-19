@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Carbon\Carbon;
 use Fame\Auth\Github;
 use Tymon\JWTAuth\JWTAuth;
 use App\Events\CurrentUser;
@@ -124,13 +123,13 @@ class AuthController extends ApiController
      */
     public function currentUser(Request $request)
     {
-        if (!$requestToken = $this->jwtAuth->setRequest($request)->getToken()) {
+        if (! $requestToken = $this->jwtAuth->setRequest($request)->getToken()) {
             return $this->response->errorBadRequest();
         }
 
         $user = $this->jwtAuth->authenticate($requestToken);
 
-        if (!$user) {
+        if (! $user) {
             return $this->response->errorNotFound();
         }
 
