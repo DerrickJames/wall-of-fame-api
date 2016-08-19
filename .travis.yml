@@ -7,8 +7,6 @@ php:
     - 7.0
     - hhvm
 
-sudo: false
-
 services:
     - redis-server
 
