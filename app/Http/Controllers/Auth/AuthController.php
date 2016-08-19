@@ -137,7 +137,7 @@ class AuthController extends ApiController
         $token = $this->jwtAuth->refresh($requestToken);
         $currentUser = array_only($user->toArray(), ['uuid', 'username', 'email', 'avatar']);
 
-        event(new CurrentUser($token, $currentUser));
+        //event(new CurrentUser($token, $currentUser));
 
         return $this->response->array(compact('token', 'currentUser'), 200);
     }
