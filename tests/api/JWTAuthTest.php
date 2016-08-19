@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class JWTAuthTest extends TestCase
 {
@@ -20,11 +19,11 @@ class JWTAuthTest extends TestCase
         $this->post('/api/auth/login', $credentials)->seeJsonStructure(['token']);
     }
 
-    /** 
-      * @test 
-      *
-      * Test: POST /api/auth/login
-      */
+    /**
+     * @test
+     *
+     * Test: POST /api/auth/login
+     */
     public function it_fails_logging_in_user_with_incorrect_credentials()
     {
         $credentials = $this->getWrongCredentials();
@@ -52,8 +51,8 @@ class JWTAuthTest extends TestCase
                     'uuid' => $user->uuid,
                     'username' => $user->username,
                     'email' => $user->email,
-                    'avatar' => $user->avatar
-                ]
+                    'avatar' => $user->avatar,
+                ],
             ]);
     }
 }
