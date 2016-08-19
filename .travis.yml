@@ -7,6 +7,9 @@ php:
     - 7.0
     - hhvm
 
+services:
+    - redis-server
+
 before_script:
     - composer self-update
     - cp .env.example .env
