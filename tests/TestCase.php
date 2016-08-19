@@ -73,6 +73,24 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $this->authUserToken;
     }
 
+    /**
+     * Return request headers.
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        $headers = ['Accept' => 'application/json'];
+        $token = $this->getAuthUserToken();
+
+        if($token) {
+            JWTAuth::setToken($token);
+            $headers['Authorization'] = 'Bearer ' . $token;
+        }
+
+        return $headers;
+    }
+
     protected function setAuthUserToken()
     {
         $user = $this->getUser();

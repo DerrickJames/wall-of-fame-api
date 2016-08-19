@@ -13,9 +13,12 @@ $api->version('v1', function ($api) {
 
             //$api->post('auth/social/login', 'AuthController@postSocialLogin');
 
-            $api->group(['middleware' => ['jwt.auth']], function ($api) {
+            $api->group(['middleware' => ['api.auth']], function ($api) {
                 /* User logout */
                 $api->post('auth/logout', 'AuthController@logout');
+
+                /* Current User */
+                $api->get('auth/user', 'AuthController@currentUser');
             });
         });
     });

@@ -42,6 +42,17 @@ class UserRepository extends AbstractRepository implements UserInterface
     }
 
     /**
+     * Find a user by email.
+     *
+     * @param mixed $email
+     * @return \App\User
+     */
+    public function findByEmail($email)
+    {
+        return $this->model->where('email', $email)->first();
+    }
+
+    /**
      * Find a user or create a new one if not available.
      *
      * @param array $data
