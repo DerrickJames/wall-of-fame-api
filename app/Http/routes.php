@@ -11,8 +11,6 @@ $api->version('v1', function ($api) {
             /* User login */
             $api->post('auth/login', 'AuthController@postLogin');
 
-            //$api->post('auth/social/login', 'AuthController@postSocialLogin');
-
             $api->group(['middleware' => ['api.auth']], function ($api) {
                 /* User logout */
                 $api->post('auth/logout', 'AuthController@logout');
