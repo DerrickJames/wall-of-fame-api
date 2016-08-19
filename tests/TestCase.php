@@ -83,9 +83,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $headers = ['Accept' => 'application/json'];
         $token = $this->getAuthUserToken();
 
-        if($token) {
+        if ($token) {
             JWTAuth::setToken($token);
-            $headers['Authorization'] = 'Bearer ' . $token;
+            $headers['Authorization'] = 'Bearer '.$token;
         }
 
         return $headers;
