@@ -2,7 +2,7 @@ var server = require('http').Server();
 var io = require('socket.io')(server);
 var Redis = require('ioredis');
 var redis = new Redis();
-var port = 4000;
+var port = 3000;
 var socketJwt = require('socketio-jwt');
 
 redis.subscribe('current-user');
