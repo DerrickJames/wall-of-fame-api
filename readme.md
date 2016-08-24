@@ -6,13 +6,13 @@
 This is the backend implementation of the Wall Of Fame project using Laravel 5.2. It is meant to be a playground to test out different ideas and approaches gathered over time as a software developer from various books, articles, tutorials and experiences on large scale system architectures, API development, design patterns, best practices and generally the way I think about elegant code.
 
 ## Requirements
-
-    * Redis
-    * Composer
-    * Node & NPM
-    * Apache/Nginx
-    * PHP minimum version of 5.5
-    * PostgreSQL - The default database is PostgreSQL but you can switch to MySQL if that makes more sense to you.
+    
+  * Redis
+  * Composer
+  * Node & NPM
+  * Apache/Nginx
+  * PHP minimum version of 5.5
+  * PostgreSQL - The default database is PostgreSQL but you can switch to MySQL if that makes more sense to you.
 
 ## Installation
 
